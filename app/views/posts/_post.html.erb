@@ -1,0 +1,20 @@
+<% post_counter ||= nil %>
+<% unless post_counter.nil? %>
+	<% params[:page] ||= 1 %>
+	<% post_counter = post_counter + (params[:page].to_i - 1) * 10 + 1 %>
+<% end %>
+
+<div id="post-<%= post.id %>" class="post">
+	<% unless post_counter.nil? %>
+		<%= (post_counter).to_s %>) 
+	<% end %>
+	<% unless current_user.nil? %> Posted by: <%= post.user.name %>
+	<% else %> Posted by: Anonymous
+	<% end %>
+	<br><br>
+	<%= post.content %>
+	<br><br>
+	Created: <%= time_ago_in_words(post.created_at) %> ago
+	<br><br><br>
+	<hr>
+</div>

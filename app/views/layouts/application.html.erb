@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Saurabh Sikchi | Members Only</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div id='header'>
+	<%= link_to "Home", root_path %>	
+	<% if current_user.nil? %>
+		<% unless request.original_url == login_url %>&nbsp;&nbsp;&nbsp; <%= link_to "Login", login_path %><% end %> <% unless request.original_url == signup_url %>&nbsp;&nbsp;&nbsp; <%= link_to "Sign up", signup_path %><% end %>
+	<% else %>
+		&nbsp;&nbsp;&nbsp; <%= link_to "Log out", logout_path, method: :delete %>&nbsp;&nbsp;&nbsp; <%= link_to "Create new post", new_post_path %>
+	<% end %>
+	<% 3.times { %> <br> <% } %>
+</div>
+<% if flash.any? %>
+	<% flash.each do |key, value| %>
+		<div class='error' id='<%= key %>'><%= value %></div>
+	<% end %>
+	<% 3.times { %> <br> <% } %>
+<% end %>
+
+<%= yield %>
+
+</body>
+</html>

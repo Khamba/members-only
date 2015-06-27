@@ -1,0 +1,23 @@
+<% if @user.errors.any? %>
+	<% @user.errors.each do |error, message| %>
+		<%= "#{error.capitalize}: #{message}" %> <br>
+	<% end %>
+<% end %>
+<br><br>
+
+<%= form_for @user do |f| %>
+	<%= f.label :name %><br>
+	<%= f.text_field :name %><br><BR>
+
+	<%= f.label :email %>
+	<br>
+	<%= f.text_field :email %>
+	<br><br>
+	<%= f.label :password %><br>
+	<%= f.password_field :password %><br><br>
+
+	<%= f.label :password_confirmation %><BR>
+	<%= f.password_field :password_confirmation %><br><br>
+
+	<%= f.submit :submit %>
+<% end %>
