@@ -11,7 +11,6 @@ class SessionsController < ApplicationController
 			log_in @user
 			if params[:sessions][:remember_me] == '1'
 				remember_user_with_signed_cookie(@user)
-				flash[:remember_digest] = @user.remember_digest
 			end
 			redirect_logged_in_user
 		else
